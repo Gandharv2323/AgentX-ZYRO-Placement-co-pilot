@@ -26,3 +26,6 @@ apps/api/data/**/*.db
 *.db-shm
 *.db-wal
 
+
+# transient failure captures from e2e runs
+docs/screens/zz-failure.png

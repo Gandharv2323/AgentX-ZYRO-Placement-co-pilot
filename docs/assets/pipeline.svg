@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" width="1200" height="300" role="img" aria-label="PlacePilot pipeline: resume to verified facts, plan, act, observe, ground, human approval gate, send">
+  <rect width="1200" height="300" rx="14" fill="#0a0a0c"/>
+  <text x="30" y="46" font-family="Inter, Segoe UI, Helvetica, Arial, sans-serif" font-size="19" font-weight="700" fill="#f2f2f5">The loop, and the one door it cannot open on its own</text>
+  <text x="30" y="70" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12.5" fill="#9a9aa6">every tool call is logged - the send tool is refused by the route, the executor and a SQLite trigger</text>
+  
+  <g transform="translate(30,96)">
+    <rect width="148" height="86" rx="12" fill="#121218"
+          stroke="#2a2a33" stroke-width="1">
+      
+    </rect>
+    <text x="74.0" y="34" text-anchor="middle" font-family="Inter, Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="700"
+          fill="#f2f2f5">Resume</text>
+    <text x="74.0" y="58" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" fill="#9a9aa6">PDF -&gt; verified facts</text>
+  </g>
+  <g>
+    <line x1="181" y1="139" x2="199" y2="139" stroke="#2a2a33" stroke-width="2"/>
+    <circle r="3" fill="#c6ff00">
+      <animateMotion dur="2.2s" begin="0.0s" repeatCount="indefinite"
+        path="M181,139 L199,139"/>
+      <animate attributeName="opacity" values="0;1;0" dur="2.2s" begin="0.0s" repeatCount="indefinite"/>
+    </circle>
+    <path d="M194 134 l6 5 -6 5" fill="none" stroke="#2a2a33" stroke-width="2"/>
+  </g>
+  <g transform="translate(202,96)">
+    <rect width="148" height="86" rx="12" fill="#121218"
+          stroke="#2a2a33" stroke-width="1">
+      
+    </rect>
+    <text x="74.0" y="34" text-anchor="middle" font-family="Inter, Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="700"
+          fill="#f2f2f5">Plan</text>
+    <text x="74.0" y="58" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" fill="#9a9aa6">deterministic or LLM</text>
+  </g>
+  <g>
+    <line x1="353" y1="139" x2="371" y2="139" stroke="#2a2a33" stroke-width="2"/>
+    <circle r="3" fill="#c6ff00">
+      <animateMotion dur="2.2s" begin="0.28s" repeatCount="indefinite"
+        path="M353,139 L371,139"/>
+      <animate attributeName="opacity" values="0;1;0" dur="2.2s" begin="0.28s" repeatCount="indefinite"/>
+    </circle>
+    <path d="M366 134 l6 5 -6 5" fill="none" stroke="#2a2a33" stroke-width="2"/>
+  </g>
+  <g transform="translate(374,96)">
+    <rect width="148" height="86" rx="12" fill="#121218"
+          stroke="#2a2a33" stroke-width="1">
+      
+    </rect>
+    <text x="74.0" y="34" text-anchor="middle" font-family="Inter, Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="700"
+          fill="#f2f2f5">Act</text>
+    <text x="74.0" y="58" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" fill="#9a9aa6">audited tool calls</text>
+  </g>
+  <g>
+    <line x1="525" y1="139" x2="543" y2="139" stroke="#2a2a33" stroke-width="2"/>
+    <circle r="3" fill="#c6ff00">
+      <animateMotion dur="2.2s" begin="0.56s" repeatCount="indefinite"
+        path="M525,139 L543,139"/>
+      <animate attributeName="opacity" values="0;1;0" dur="2.2s" begin="0.56s" repeatCount="indefinite"/>
+    </circle>
+    <path d="M538 134 l6 5 -6 5" fill="none" stroke="#2a2a33" stroke-width="2"/>
+  </g>
+  <g transform="translate(546,96)">
+    <rect width="148" height="86" rx="12" fill="#121218"
+          stroke="#2a2a33" stroke-width="1">
+      
+    </rect>
+    <text x="74.0" y="34" text-anchor="middle" font-family="Inter, Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="700"
+          fill="#f2f2f5">Observe</text>
+    <text x="74.0" y="58" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" fill="#9a9aa6">re-plan on thin results</text>
+  </g>
+  <g>
+    <line x1="697" y1="139" x2="715" y2="139" stroke="#2a2a33" stroke-width="2"/>
+    <circle r="3" fill="#c6ff00">
+      <animateMotion dur="2.2s" begin="0.8400000000000001s" repeatCount="indefinite"
+        path="M697,139 L715,139"/>
+      <animate attributeName="opacity" values="0;1;0" dur="2.2s" begin="0.8400000000000001s" repeatCount="indefinite"/>
+    </circle>
+    <path d="M710 134 l6 5 -6 5" fill="none" stroke="#2a2a33" stroke-width="2"/>
+  </g>
+  <g transform="translate(718,96)">
+    <rect width="148" height="86" rx="12" fill="#121218"
+          stroke="#2a2a33" stroke-width="1">
+      
+    </rect>
+    <text x="74.0" y="34" text-anchor="middle" font-family="Inter, Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="700"
+          fill="#f2f2f5">Ground</text>
+    <text x="74.0" y="58" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" fill="#9a9aa6">every claim -&gt; a fact</text>
+  </g>
+  <g>
+    <line x1="869" y1="139" x2="887" y2="139" stroke="#2a2a33" stroke-width="2"/>
+    <circle r="3" fill="#c6ff00">
+      <animateMotion dur="2.2s" begin="1.12s" repeatCount="indefinite"
+        path="M869,139 L887,139"/>
+      <animate attributeName="opacity" values="0;1;0" dur="2.2s" begin="1.12s" repeatCount="indefinite"/>
+    </circle>
+    <path d="M882 134 l6 5 -6 5" fill="none" stroke="#2a2a33" stroke-width="2"/>
+  </g>
+  <g transform="translate(890,96)">
+    <rect width="148" height="86" rx="12" fill="#15150c"
+          stroke="#c6ff00" stroke-width="2">
+      <animate attributeName="stroke-opacity" values="1;0.35;1" dur="2.4s" repeatCount="indefinite"/>
+    </rect>
+    <text x="74.0" y="34" text-anchor="middle" font-family="Inter, Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="700"
+          fill="#c6ff00">APPROVE</text>
+    <text x="74.0" y="58" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" fill="#9a9aa6">human says yes</text>
+  </g>
+  <g>
+    <line x1="1041" y1="139" x2="1059" y2="139" stroke="#2a2a33" stroke-width="2"/>
+    <circle r="3" fill="#c6ff00">
+      <animateMotion dur="2.2s" begin="1.4000000000000001s" repeatCount="indefinite"
+        path="M1041,139 L1059,139"/>
+      <animate attributeName="opacity" values="0;1;0" dur="2.2s" begin="1.4000000000000001s" repeatCount="indefinite"/>
+    </circle>
+    <path d="M1054 134 l6 5 -6 5" fill="none" stroke="#2a2a33" stroke-width="2"/>
+  </g>
+  <g transform="translate(1062,96)">
+    <rect width="148" height="86" rx="12" fill="#121218"
+          stroke="#2a2a33" stroke-width="1">
+      
+    </rect>
+    <text x="74.0" y="34" text-anchor="middle" font-family="Inter, Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="700"
+          fill="#f2f2f5">Send</text>
+    <text x="74.0" y="58" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" fill="#9a9aa6">local outbox record</text>
+  </g>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12">
+    <text x="30" y="228" fill="#ff7a70">blocked without approval:</text>
+    <text x="182" y="228" fill="#9a9aa6">POST /api/applications/{id}/send  ->  422 approval_required</text>
+    <text x="30" y="250" fill="#9a9aa6">bundle_hash</text>
+    <text x="126" y="250" fill="#c6ff00">bndl_9c2e...</text>
+    <text x="30" y="272" fill="#9a9aa6">approve a bundle, then the outbox accepts a matching hash - edit a fact and that yes expires</text>
+  </g>
+</svg>

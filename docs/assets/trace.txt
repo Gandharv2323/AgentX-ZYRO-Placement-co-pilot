@@ -1,0 +1,14 @@
+$ placepilot ask "Find 10 AI/ML internships in Pune"
+
+   1  PLAN   Read what the agent...       13 facts on file, 0 weak interview topics
+   2  PLAN   Plan                         Search 10 roles=['ai'] where=['Pune'] posted<60d
+   3  ACT    job_search                   7 live match of 50 listings | 10 past deadline |...
+   4  PLAN   Not enough - revising the... short by 3; widen recency
+   5  OBSERV... Observed: widen recency      7 live match of 50 listings | 10 past deadline |...
+   6  PLAN   Not enough - revising the... short by 3; drop location filter
+   7  OBSERV... Observed: drop location...   16 live match of 50 listings | 10 past deadline |...
+   8  VERIFY Verified                     13 of 13 facts verified | ranking is deterministic,...
+   9  DONE   Done                         10 openings ranked across 3 search attempt(s)
+
+  -> 10 ranked in 3 search attempt(s), planner=deterministic
+  -> nothing sent: every bundle waits for a human approval

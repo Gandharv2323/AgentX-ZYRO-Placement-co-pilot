@@ -7,6 +7,7 @@ import { mkdirSync, existsSync } from "node:fs";
 import { join } from "node:path";
 
 const WEB = process.env.WEB_URL ?? "http://127.0.0.1:3210";
+const API = process.env.API_URL ?? "http://127.0.0.1:8010";
 const SHOTS = join(process.cwd(), "docs", "screens");
 mkdirSync(SHOTS, { recursive: true });
 
@@ -33,6 +34,9 @@ const browser = await chromium.launch({
   args: ["--no-sandbox", "--disable-dev-shm-usage"],
 });
 const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+// The web app resolves its API origin from ?api= (then remembers it) or the build default.
+// Seeding it here is what lets this script run against any port.
+await page.addInitScript((api) => localStorage.setItem("placepilot.api", api), API);
 
 page.on("console", (m) => {
   if (m.type() === "error") consoleErrors.push(m.text());
@@ -170,6 +174,7 @@ try {
 
   // 13. mobile
   const mobile = await browser.newPage({ viewport: { width: 390, height: 844 }, isMobile: true });
+  await mobile.addInitScript((api) => localStorage.setItem("placepilot.api", api), API);
   await mobile.goto(WEB, { waitUntil: "networkidle" });
   await mobile.getByRole("heading", { name: /asks before it applies/i }).waitFor();
   const overflow = await mobile.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 1);

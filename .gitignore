@@ -1,0 +1,17 @@
+﻿# PlacePilot local data and caches (never commit)
+apps/api/data/*.db
+apps/api/data/*.db-shm
+apps/api/data/*.db-wal
+apps/api/data/test/
+apps/api/app/seed/sample_resume.html
+.cache/
+node_modules/
+.next/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.env
+
+# LibreOffice lock files
+.~lock.*#

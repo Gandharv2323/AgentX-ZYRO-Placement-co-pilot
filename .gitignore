@@ -15,3 +15,14 @@ __pycache__/
 
 # LibreOffice lock files
 .~lock.*#
+
+# stray test scratch (locked dirs from sandboxed runs)
+apps/api/placepilot-test-*
+apps/api/pytest-cache-files-*
+
+
+# never publish local databases
+apps/api/data/**/*.db
+*.db-shm
+*.db-wal
+

@@ -173,7 +173,16 @@ async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
 }
 
 export const api = {
-  health: () => request<{ ok: boolean; jobs: number; mode: string }>("/healthz"),
+  health: () =>
+    request<{
+      ok: boolean;
+      jobs: number;
+      live_jobs: number;
+      planner: string;
+      jobs_source: string;
+      llm_configured: boolean;
+      adzuna_configured: boolean;
+    }>("/healthz"),
 
   me: () => request<{ student: any; facts: Fact[] }>("/api/students/me"),
   patchMe: (body: any) => request<{ student: any; facts: Fact[] }>("/api/students/me", { method: "PATCH", body: JSON.stringify(body) }),

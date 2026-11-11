@@ -17,13 +17,18 @@ export function Shell({ children }: { children: React.ReactNode }) {
   const path = usePathname();
   const bare = path === "/" || path.startsWith("/onboarding");
   const [online, setOnline] = useState<boolean | null>(null);
+  const [health, setHealth] = useState<any>(null);
 
   useEffect(() => {
     let alive = true;
     const ping = () =>
       api
         .health()
-        .then((h) => alive && setOnline(h.ok))
+        .then((h) => {
+          if (!alive) return;
+          setOnline(h.ok);
+          setHealth(h);
+        })
         .catch(() => alive && setOnline(false));
     ping();
     const t = setInterval(ping, 15000);
@@ -34,6 +39,12 @@ export function Shell({ children }: { children: React.ReactNode }) {
   }, []);
 
   if (bare) return <>{children}</>;
+
+  const planner =
+    health?.planner === "anthropic" ? "Claude planner"
+    : health?.planner === "openrouter" ? "OpenRouter planner"
+    : "Deterministic planner";
+  const jobsSource = health?.live_jobs > 0 ? `Live + ${health.jobs - health.live_jobs} seeded jobs` : "Seeded listings";
 
   return (
     <div className="shell">
@@ -63,9 +74,8 @@ export function Shell({ children }: { children: React.ReactNode }) {
         <header className="topbar">
           <span className="eyebrow">AgentX 2026 · PS-06 · Team ZYRO</span>
           <div className="row gap-8">
-            <span className="chip" title="The planner is deterministic unless an LLM key is configured">
-              Deterministic planner
-            </span>
+            <span className="chip" title={health?.llm_configured ? "ANTHROPIC_API_KEY is set" : "No LLM key: the deterministic planner runs"}>{planner}</span>
+            <span className="chip" title={jobsSource}>{jobsSource}</span>
             {online === false && <span className="chip chip-red">API offline</span>}
             {online === true && <span className="chip chip-lime">API online</span>}
           </div>

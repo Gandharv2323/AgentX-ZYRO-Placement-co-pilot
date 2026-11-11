@@ -13,8 +13,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import PlainTextResponse, Response
 from pypdf import PdfReader
 
-from . import agent, core, db, interview
+from . import agent, config, core, db, interview  # config first: it loads .env into os.environ
 from .errors import ApiError, api_error_handler, unhandled_error_handler
+
+_ = config  # imported for its side effect (load_env) before any provider check
 
 app = FastAPI(title="PlacePilot", version="1.0.0")
 app.add_exception_handler(ApiError, api_error_handler)
@@ -99,14 +101,21 @@ def _diff_for(conn, app_id: str, docs: dict) -> dict:
 
 @app.get("/healthz")
 def healthz() -> dict:
+    from . import providers
+
     conn = db.connect()
     try:
         jobs = conn.execute("SELECT COUNT(*) c FROM jobs").fetchone()["c"]
+        live = conn.execute("SELECT COUNT(*) c FROM jobs WHERE source='adzuna'").fetchone()["c"]
         students = conn.execute("SELECT COUNT(*) c FROM students").fetchone()["c"]
     finally:
         conn.close()
-    return {"ok": True, "jobs": jobs, "students": students, "mode": "deterministic",
-            "send_mode": "record", "llm": "off", "version": app.version, "time": db.iso()}
+    return {"ok": True, "jobs": jobs, "live_jobs": live, "students": students,
+            "planner": providers.llm_mode(),
+            "jobs_source": providers.jobs_mode(),
+            "llm_configured": providers.llm_available(),
+            "adzuna_configured": providers.adzuna_configured(),
+            "send_mode": "record", "version": app.version, "time": db.iso()}
 
 
 # ---------------------------------------------------------------- student

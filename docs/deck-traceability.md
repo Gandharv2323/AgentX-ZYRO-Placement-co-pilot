@@ -16,8 +16,8 @@ Every claim on the submission deck, and where it lives in the build. Slide numbe
 | 02 | Optional Hindi–English practice | `language=hi` questions + `hi-IN` speech | `test_hindi_questions_are_served_in_hindi` |
 | 03 | Input / Process / Output / Action | Onboarding → run trace → ranked list → approve/track | `e2e.mjs` steps 2–9 |
 | 03 | Next.js · FastAPI · SQLite | `apps/web`, `apps/api`, `apps/api/data/*.db` | repo layout |
-| 03 | Claude tool use | **Not wired** (no key). Deterministic planner is the shipped path; the tool registry it would call is exposed at `/api/agent/tools` | `docs/limitations.md` |
-| 03 | Adzuna + mock jobs | **Mock only**, 50 seeded listings; source column ready | `test_search_run_traces_every_step_and_replans` |
+| 03 | Claude tool use | `providers.plan_step` + `run_search_llm`: real tool-use loop over the same registry. **Off by default; never ran live** (no key) | `test_llm_planner_drives_a_real_run`, `test_llm_cannot_invent_a_tool` |
+| 03 | Adzuna + mock jobs | `providers.adzuna_search` + `merge_jobs`, seeded fallback, reason surfaced. **Off by default; never ran live** (no key) | `test_adzuna_maps_response_into_internal_job_shape`, `test_adzuna_http_failure_degrades_to_seed_set` |
 | 03 | Calendar `.ics`/API | `GET /api/calendar.ics`, per-application reminders | `test_ics_folds_long_lines_and_has_alarm` |
 | 03 | "Every tool call is logged" | `tool_calls` + `/api/memory` history | `/memory` tool table |
 | 03 | "send blocked at the API layer (HTTP 422)" | Exactly that | `e2e.mjs` step 6, screenshot `06-blocked-422.png` |
@@ -33,9 +33,13 @@ Every claim on the submission deck, and where it lives in the build. Slide numbe
 
 ## Deliberate deviations
 
-- **No live Claude/Adzuna.** No keys exist in this environment, so shipping untested network code
-  as the demo path would have been a lie. The deterministic planner is the product; adapters are the next step.
+- **Providers ship off and unverified live.** Adzuna and Claude are implemented behind
+  `providers.http_json` and covered by 16 fake-transport tests, but no key existed here, so no real
+  round-trip happened. Shipping them as the demo path would have claimed something untested; they
+  are opt-in instead. See `docs/providers.md`.
 - **No ProbeIQ import.** It has no license, needs OpenRouter, and its interviewer is LLM-first.
   The *pattern* (typed session, per-topic 1–5 scores, session store) is what was reused.
 - **Send = local outbox.** The deck promises an approval gate, not a mail server. A demo that
   quietly emails strangers would be worse than one that records honestly.
+- **Tailoring stays deterministic even with an LLM planner.** The model plans; `core.build_docs`
+  and `validate_grounding` produce and police the document, so no prompt can introduce a claim.

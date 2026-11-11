@@ -19,6 +19,20 @@ from app import core, db  # noqa: E402
 from app.main import app  # noqa: E402
 
 
+@pytest.fixture(autouse=True)
+def offline(monkeypatch):
+    """The suite must never touch the network or a developer's .env keys.
+
+    Without this, a configured OPENROUTER/ADZUNA key turns unit tests into live calls:
+    slow, flaky, and it would bill the user.
+    """
+    for key in ("OPENROUTER_API_KEY", "ANTHROPIC_API_KEY", "ADZUNA_APP_ID", "ADZUNA_APP_KEY",
+                "PLACEPILOT_LLM", "PLACEPILOT_JOBS", "PLACEPILOT_MODEL"):
+        monkeypatch.delenv(key, raising=False)
+    monkeypatch.setenv("PLACEPILOT_LLM", "off")
+    monkeypatch.setenv("PLACEPILOT_JOBS", "mock")
+
+
 @pytest.fixture(scope="module")
 def client():
     with TestClient(app) as c:

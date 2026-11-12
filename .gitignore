@@ -1,0 +1,31 @@
+﻿# PlacePilot local data and caches (never commit)
+apps/api/data/*.db
+apps/api/data/*.db-shm
+apps/api/data/*.db-wal
+apps/api/data/test/
+apps/api/app/seed/sample_resume.html
+.cache/
+node_modules/
+.next/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.env
+
+# LibreOffice lock files
+.~lock.*#
+
+# stray test scratch (locked dirs from sandboxed runs)
+apps/api/placepilot-test-*
+apps/api/pytest-cache-files-*
+
+
+# never publish local databases
+apps/api/data/**/*.db
+*.db-shm
+*.db-wal
+
+
+# transient failure captures from e2e runs
+docs/screens/zz-failure.png
